@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import Header from './Header';
+import InputForm from './InputForm';
+import TodoItem from './TodoItem';
 import './reset.css'
 import './App.css'
 
@@ -21,39 +24,22 @@ function App() {
 
   return (
     <>
-      <header className='header'>
-        <h1 className='page-title'>TODO LIST</h1>
-      </header>
+      <Header />
       
-      <div className='input-wrap'>
-        <input
-          className='user-input'
-          placeholder='할 일을 입력하세요'
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && addTodo()}
-        />
-        <button className='add-button' onClick={addTodo}>추가</button>
-      </div>
+      <InputForm
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        addTodo={addTodo}
+      />
 
       <div className='todo-list-wrap'>
         <h2 className='list-title'>할 일</h2>
 
         <ul className='todo-list'>
-          {
-            todos.map((todo, i) => {
-              return (
-                <li key={i} className='todo-item'>
-                  <input type='checkbox' />
-                  <p>{todo}</p>
-                  <button
-                    className='delete-button'
-                    onClick={() => deleteTodo(i)}
-                  >X</button>
-                </li>
-              )
-            })
-          }
+          <TodoItem
+            todos={todos}
+            deleteTodo={deleteTodo}
+          />
         </ul>
       </div>
     </>
