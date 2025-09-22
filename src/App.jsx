@@ -1,48 +1,15 @@
-import { useState } from 'react'
-import Header from './Header';
-import InputForm from './InputForm';
-import TodoList from './TodoList';
-import './reset.css'
-import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomePage from './HomePage';
+import TodoPage from './TodoPage';
 
 function App() {
-  const dbTodos = ['자바스크립트 공부하기', '파스타 먹기']
-  const [todos, setTodos] = useState(dbTodos);
-  const [inputValue, setInputValue] = useState('');
-
-  const addTodo = () => {
-    const next = inputValue.trim();
-    if (!next) return;
-
-    setTodos(prev => [next, ...prev]);
-    setInputValue('');
-  };
-
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((_, i) => i !== id));
-  }
-
   return (
-    <>
-      <Header />
-      
-      <InputForm
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        addTodo={addTodo}
-      />
-
-      <div className='todo-list-wrap'>
-        <h2 className='list-title'>할 일</h2>
-
-        <ul className='todo-list'>
-          <TodoList
-            todos={todos}
-            deleteTodo={deleteTodo}
-          />
-        </ul>
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/todo' element={<TodoPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
