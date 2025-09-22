@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Header from './Header';
 import InputForm from './InputForm';
-import TodoItem from './TodoItem';
+import TodoList from './TodoList';
 import './reset.css'
 import './App.css'
 
@@ -36,7 +36,7 @@ function App() {
         <h2 className='list-title'>할 일</h2>
 
         <ul className='todo-list'>
-          <TodoItem
+          <TodoList
             todos={todos}
             deleteTodo={deleteTodo}
           />
